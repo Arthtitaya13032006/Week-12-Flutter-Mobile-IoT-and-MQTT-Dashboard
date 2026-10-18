@@ -6,13 +6,11 @@
 
 ในการพัฒนาแอปพลิเคชัน Flutter ที่ต้องสื่อสารผ่านโปรโตคอล MQTT แพ็กเกจที่ได้รับการยอมรับและเป็นมาตรฐานอุตสาหกรรมสูงสุดคือ **`mqtt_client`** (พัฒนาโดย Steve Hamblett) ซึ่งรองรับมาตรฐาน **MQTT v3.1.1** และ **MQTT v5.0** อย่างสมบูรณ์
 
-```
-pub.dev: mqtt_client
-├── รองรับการเชื่อมต่อผ่าน Raw TCP Sockets (พอร์ต 1883 / 8883)
-├── รองรับการเชื่อมต่อผ่าน WebSockets (พอร์ต 8083 / 9001)
-├── ทำงานแบบ Asynchronous และ Stream-based เต็มรูปแบบ
-└── รองรับทั้ง Android, iOS, Windows, macOS, Linux และ Web
-```
+
+> [!INFO] **จุดเด่นของแพ็กเกจ `mqtt_client` (pub.dev)**
+> * **โปรโตคอลการเชื่อมต่อ** รองรับทั้ง Raw TCP Sockets (พอร์ต 1883 / 8883) และ WebSockets (พอร์ต 8083 / 9001)
+> * **โมเดลการประมวลผล** ทำงานแบบ Asynchronous และ Stream-based เต็มรูปแบบ
+> * **ความเข้ากันได้** ครอบคลุมทั้ง Android, iOS, Windows, macOS, Linux และ Web
 
 ### การติดตั้งแพ็กเกจในไฟล์ `pubspec.yaml`
 ```yaml
@@ -21,46 +19,48 @@ dependencies:
     sdk: flutter
   mqtt_client: ^10.3.0    # ไลบรารี MQTT Client สำหรับ Dart
 ```
-หรือรันคำสั่งผ่านเทอร์มินัล:
+หรือรันคำสั่งผ่านเทอร์มินัล
 ```powershell
 flutter pub add mqtt_client
 ```
 
 ---
 
-## 12.2.2 รูปแบบการเชื่อมต่อ: TCP Socket vs WebSocket
+## 12.2.2 รูปแบบการเชื่อมต่อ TCP Socket vs WebSocket
 
-เมื่อนำ Flutter ไปรันบนแพลตฟอร์มที่แตกต่างกัน ตัวกลางในการขนส่งข้อมูล (Transport Layer) มีความแตกต่างกันอย่างสำคัญ:
+เมื่อนำ Flutter ไปรันบนแพลตฟอร์มที่แตกต่างกัน ตัวกลางในการขนส่งข้อมูล (Transport Layer) มีความแตกต่างกันอย่างสำคัญ
 
+```mermaid
+flowchart TD
+    subgraph Targets[" 📱 แพลตฟอร์มเป้าหมาย (Client Platforms) "]
+        direction LR
+        Mobile["📱 <b>Android / iOS / Desktop</b><br/>(รันเนทีฟบน OS)"]
+        Web["🌐 <b>Flutter Web Browser</b><br/>(รันบนเบราว์เซอร์)"]
+    end
+
+    ServerClient["⚙️ <b>MqttServerClient</b><br/>(ทำงานผ่าน Raw TCP Socket)"]
+    BrowserClient["🌐 <b>MqttBrowserClient</b><br/>(ทำงานผ่าน WebSockets ws:// หรือ wss://)"]
+
+    Broker["🏢 <b>Mosquitto / EMQX MQTT Broker</b><br/>ศูนย์กลางกระจายข้อความ Publish / Subscribe"]
+
+    Mobile --> ServerClient
+    Web --> BrowserClient
+
+    ServerClient -->|Port 1883 / 8883 TCP| Broker
+    BrowserClient -->|Port 8083 / 9001 WS| Broker
 ```
-+-----------------------------------------------------------------------------------+
-|                        การเลือกประเภท Client ในแพ็กเกจ mqtt_client                |
-+-----------------------------------------------------------------------------------+
 
-     [ Android / iOS / Desktop ]                      [ Flutter Web Browser ]
-                  │                                              │
-                  ▼                                              ▼
-       MqttServerClient                               MqttBrowserClient
-  (รันผ่าน Raw TCP Socket)                       (รันผ่าน WebSockets ws:// หรือ wss://)
-                  │                                              │
-                  ├───────────────► Port 1883 / 8883 (TCP) ◄─────┤
-                  └───────────────► Port 8083 / 9001 (WS)  ◄─────┘
-                                              │
-                                              ▼
-                                 [ Mosquitto MQTT Broker ]
-```
-
-1. **`MqttServerClient` (ใช้กับแอปพลิเคชันมือถือ Android, iOS และ Desktop)**:
+1. **`MqttServerClient` (ใช้กับแอปพลิเคชันมือถือ Android, iOS และ Desktop)**
    * เชื่อมต่อผ่าน Raw TCP Socket ตรงๆ ไปยังพอร์ต **1883** (ไม่เข้ารหัส) หรือ **8883** (TLS)
    * มีความเร็วสูงและ Packet Overhead ต่ำที่สุด
-2. **`MqttBrowserClient` (ใช้กับเว็บเบราว์เซอร์ Flutter Web)**:
+2. **`MqttBrowserClient` (ใช้กับเว็บเบราว์เซอร์ Flutter Web)**
    * เว็บเบราว์เซอร์มีนโยบายความปลอดภัยที่ไม่อนุญาตให้เปิด Raw TCP Socket จึงต้องห่อแพ็กเก็ต MQTT ในโพรโทคอล **WebSocket** ผ่านพอร์ต **8083** หรือ **9001**
 
 ---
 
 ## 12.2.3 ขั้นตอนการสร้างการเชื่อมต่อกับ Broker (Connection Workflow)
 
-การเชื่อมต่อกับ Broker มีขั้นตอนที่เป็นลำดับชั้น (Pipeline) ดังแสดงในแผนภาพ:
+การเชื่อมต่อกับ Broker มีขั้นตอนที่เป็นลำดับชั้น (Pipeline) ดังแสดงในแผนภาพ
 
 ```mermaid
 sequenceDiagram
@@ -149,7 +149,7 @@ class MqttService {
 
 ## 12.2.4 การบอกรับหัวข้อและการประมวลผลข้อความ (Subscribe & Stream Handling)
 
-จุดเด่นของแพ็กเกจ `mqtt_client` บน Dart คือ การส่งข้อมูลขาเข้าในรูปของ **Stream** ทำให้นักพัฒนาสามารถใช้ `StreamSubscription` คอยดักฟังและแปลงข้อความแบบ Asynchronous ได้อย่างทรงพลัง:
+จุดเด่นของแพ็กเกจ `mqtt_client` บน Dart คือ การส่งข้อมูลขาเข้าในรูปของ **Stream** ทำให้นักพัฒนาสามารถใช้ `StreamSubscription` คอยดักฟังและแปลงข้อความแบบ Asynchronous ได้อย่างทรงพลัง
 
 ```dart
 void subscribeToTopic(String topic) {
@@ -177,7 +177,7 @@ void subscribeToTopic(String topic) {
 
 ## 12.2.5 การแปลงข้อมูล JSON Payload (Serialization & Deserialization)
 
-ในระบบ IoT นิยมส่งข้อมูลเซนเซอร์ในรูปของข้อความ **JSON** เช่น:
+ในระบบ IoT นิยมส่งข้อมูลเซนเซอร์ในรูปของข้อความ **JSON** เช่น
 ```json
 {
   "voltage": 1.65,
@@ -186,7 +186,7 @@ void subscribeToTopic(String topic) {
 }
 ```
 
-ในภาษา Dart เราควรสร้างคลาสข้อมูล (Data Model) เพื่อรองรับการแปลงข้อมูล (Deserialization) แบบปลอดภัย:
+ในภาษา Dart เราควรสร้างคลาสข้อมูล (Data Model) เพื่อรองรับการแปลงข้อมูล (Deserialization) แบบปลอดภัย
 
 ```dart
 import 'dart:convert';
@@ -230,7 +230,7 @@ void processPayload(String topic, String payloadString) {
 
 ## 12.2.6 การส่งคำสั่งควบคุม (Publishing Commands)
 
-การส่งคำสั่งเปิด-ปิดไฟ หรือปรับค่าพารามิเตอร์จากมือถือไปยังบอร์ด ESP32 ทำได้โดยการเรียกฟังก์ชัน `publishMessage` พร้อมกับสร้าง Payload Builder:
+การส่งคำสั่งเปิด-ปิดไฟ หรือปรับค่าพารามิเตอร์จากมือถือไปยังบอร์ด ESP32 ทำได้โดยการเรียกฟังก์ชัน `publishMessage` พร้อมกับสร้าง Payload Builder
 
 ```dart
 void sendLedCommand(bool turnOn) {
@@ -257,7 +257,7 @@ void sendLedCommand(bool turnOn) {
 
 ## 12.2.7 กลยุทธ์การเชื่อมต่อใหม่อัตโนมัติ (Resilient Auto-Reconnect Strategy)
 
-บนสมาร์ตโฟน เครือข่ายอาจขาดหายเมื่อผู้ใช้เดินเข้าลิฟต์ หรือระบบสลับคลื่นจาก Wi-Fi ไป 4G เพื่อให้แอปพลิเคชันมีความทนทาน (Fault-Tolerant) เราสามารถวางระบบเชื่อมต่อใหม่แบบ Exponential Backoff:
+บนสมาร์ตโฟน เครือข่ายอาจขาดหายเมื่อผู้ใช้เดินเข้าลิฟต์ หรือระบบสลับคลื่นจาก Wi-Fi ไป 4G เพื่อให้แอปพลิเคชันมีความทนทาน (Fault-Tolerant) เราสามารถวางระบบเชื่อมต่อใหม่แบบ Exponential Backoff
 
 ```dart
 bool _isReconnecting = false;

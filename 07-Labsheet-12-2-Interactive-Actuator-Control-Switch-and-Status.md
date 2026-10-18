@@ -26,12 +26,23 @@
 
 ## 3. ขั้นตอนการทดลอง (Step-by-Step Activities)
 
-### กิจกรรมที่ 12-2.1: การเขียนโค้ดหน้าจอควบคุมสวิตช์ (`actuator_control_screen.dart`)
+### กิจกรรมที่ 12-2.1: การเตรียมโปรเจกต์และการสร้างหน้าจอควบคุมสวิตช์
 
-> [!info] คำแนะนำ
-> เพื่อประหยัดเวลาในการทำงาน ให้ copy โฟลเดอร์ของใบงานที่ 12.1 มาเป็นโฟลเดอร์ใหม่ และเปลี่ยนชื่อเป็น Lab12-2
+#### 1. คัดลอกโปรเจกต์จาก Lab 12-1
+เพื่อประหยัดเวลาและไม่ต้องติดตั้งแพ็กเกจ `mqtt_client` ใหม่อีกครั้ง ให้นักศึกษาคัดลอกโฟลเดอร์โปรเจกต์จาก Lab 12-1 มาเป็นโฟลเดอร์สำหรับ Lab 12-2
 
-ในโปรเจกต์ Flutter สร้างไฟล์ `lib/actuator_control_screen.dart` และใส่โค้ดต่อไปนี้:
+**คำสั่ง PowerShell:**
+```powershell
+# คัดลอกโฟลเดอร์โปรเจกต์จาก Lab12-1 มาเป็น Lab12-2
+Copy-Item -Recurse -Path "..\Lab12-1\iot_mqtt_basics" -Destination "..\Lab12-2\iot_actuator_switch"
+
+# ย้ายเข้าไปยังโฟลเดอร์โปรเจกต์ใหม่
+cd ..\Lab12-2\iot_actuator_switch
+```
+*(หรือคลิกขวา Copy โฟลเดอร์ `iot_mqtt_basics` ใน File Explorer แล้ว Paste วางในโฟลเดอร์ใหม่และเปลี่ยนชื่อโฟลเดอร์ตามต้องการ)*
+
+#### 2. สร้างไฟล์หน้าจอควบคุมสวิตช์ (`lib/actuator_control_screen.dart`)
+ในโฟลเดอร์ `lib/` ให้สร้างไฟล์ใหม่ชื่อ `actuator_control_screen.dart` และใส่โค้ดต่อไปนี้
 
 ```dart
 import 'dart:convert';
@@ -271,11 +282,53 @@ class _ActuatorControlScreenState extends State<ActuatorControlScreen> {
 }
 ```
 
+#### 3. ปรับปรุงไฟล์ `lib/main.dart` เพื่อเรียกใช้งานหน้าจอใหม่
+เปิดไฟล์ `lib/main.dart` และแก้ไขโค้ดทั้งหมดให้เรียกใช้งาน `ActuatorControlScreen` เป็นหน้าจอเริ่มต้น (Home Screen)
+
+```dart
+import 'package:flutter/material.dart';
+import 'actuator_control_screen.dart';
+
+void main() {
+  runApp(const ActuatorApp());
+}
+
+class ActuatorApp extends StatelessWidget {
+  const ActuatorApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Lab 12.2 Actuator Switch',
+      theme: ThemeData.dark().copyWith(
+        scaffoldBackgroundColor: const Color(0xFF0F172A),
+        colorScheme: const ColorScheme.dark(
+          primary: Color(0xFF00E5FF),
+          secondary: Color(0xFF00E676),
+        ),
+      ),
+      // กำหนด IP ของ Mosquitto Broker (ใช้ 127.0.0.1 หากรันบนคอมพิวเตอร์เครื่องเดียวกัน)
+      home: const ActuatorControlScreen(brokerIp: '127.0.0.1'),
+      debugShowCheckedModeBanner: false,
+    );
+  }
+}
+```
+
+#### 4. สั่งรัน Flutter App
+```powershell
+# รันบน Windows Desktop
+flutter run -d windows
+
+# หรือรันบน Android Device / Emulator
+flutter run -d <device-id>
+```
+
 ---
 
 ### กิจกรรมที่ 12-2.2: การทดสอบร่วมกับสคริปต์จำลองฮาร์ดแวร์ (Mock Simulation)
 
-หากยังไม่ได้ต่อบอร์ด ESP32 จริง สามารถใช้ PowerShell ทดสอบจำลองพฤติกรรมของฮาร์ดแวร์ได้:
+หากยังไม่ได้ต่อบอร์ด ESP32 จริง สามารถใช้ PowerShell ทดสอบจำลองพฤติกรรมของฮาร์ดแวร์ได้
 
 #### 1. จำลองส่งสถานะ Online (เสมือน ESP32 บูตเสร็จ)
 ```powershell

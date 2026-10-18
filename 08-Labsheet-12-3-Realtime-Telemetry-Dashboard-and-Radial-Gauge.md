@@ -22,9 +22,26 @@
 
 ## 3. ขั้นตอนการทดลอง (Step-by-Step Activities)
 
-### กิจกรรมที่ 12-3.1: การสร้างคอมโพเนนต์มาตรวัด (`radial_gauge_widget.dart`)
+### กิจกรรมที่ 12-3.1: การเตรียมโปรเจกต์และการสร้างคอมโพเนนต์มาตรวัด
 
-สร้างไฟล์ `lib/radial_gauge_widget.dart` สำหรับวาดมาตรวัดความเร็ว/แรงดัน:
+#### 1. คัดลอกโปรเจกต์จาก Lab ก่อนหน้า
+เพื่อประหยัดเวลาและไม่ต้องติดตั้งแพ็กเกจ `mqtt_client` ใหม่อีกครั้ง ให้นักศึกษาคัดลอกโฟลเดอร์โปรเจกต์จาก Lab 12-1 (หรือ Lab 12-2) มาเป็นโฟลเดอร์สำหรับ Lab 12-3
+
+**คำสั่ง PowerShell:**
+```powershell
+# 1. คัดลอกโฟลเดอร์โปรเจกต์จาก Lab12-1 มาเป็น Lab12-3
+Copy-Item -Recurse -Path "..\Lab12-1\iot_mqtt_basics" -Destination "..\Lab12-3\iot_telemetry_gauge"
+
+# 2. ย้ายเข้าไปยังโฟลเดอร์โปรเจกต์ใหม่
+cd ..\Lab12-3\iot_telemetry_gauge
+
+# 3. ล้างแคชการคอมไพล์เดิมออก (จำเป็นอย่างยิ่งเพื่อป้องกัน CMake Error จาก Path เก่า)
+flutter clean
+```
+*(หรือคลิกขวา Copy โฟลเดอร์ `iot_mqtt_basics` ใน File Explorer แล้ว Paste วางในโฟลเดอร์ใหม่ และรันคำสั่ง `flutter clean` เสมอ)*
+
+#### 2. สร้างคอมโพเนนต์มาตรวัด (`lib/radial_gauge_widget.dart`)
+ในโฟลเดอร์ `lib/` ให้สร้างไฟล์ใหม่ชื่อ `radial_gauge_widget.dart` สำหรับวาดมาตรวัดความเร็ว/แรงดัน:
 
 ```dart
 import 'dart:math' as math;
@@ -150,7 +167,8 @@ class _GaugePainter extends CustomPainter {
 
 ### กิจกรรมที่ 12-3.2: การสร้างหน้าจอ Telemetry Dashboard (`telemetry_dashboard_screen.dart`)
 
-สร้างไฟล์ `lib/telemetry_dashboard_screen.dart`:
+#### 1. สร้างไฟล์หน้าจอแดชบอร์ด (`lib/telemetry_dashboard_screen.dart`)
+ในโฟลเดอร์ `lib/` ให้สร้างไฟล์ใหม่ชื่อ `telemetry_dashboard_screen.dart` และใส่โค้ดต่อไปนี้:
 
 ```dart
 import 'dart:convert';
@@ -371,6 +389,48 @@ class _SparklinePainter extends CustomPainter {
 }
 ```
 
+#### 2. ปรับปรุงไฟล์ `lib/main.dart` เพื่อเรียกใช้งานหน้าจอใหม่
+เปิดไฟล์ `lib/main.dart` และแก้ไขโค้ดทั้งหมดให้เรียกใช้งาน `TelemetryDashboardScreen` เป็นหน้าจอเริ่มต้น (Home Screen):
+
+```dart
+import 'package:flutter/material.dart';
+import 'telemetry_dashboard_screen.dart';
+
+void main() {
+  runApp(const TelemetryApp());
+}
+
+class TelemetryApp extends StatelessWidget {
+  const TelemetryApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Lab 12.3 Telemetry Dashboard',
+      theme: ThemeData.dark().copyWith(
+        scaffoldBackgroundColor: const Color(0xFF0F172A),
+        colorScheme: const ColorScheme.dark(
+          primary: Color(0xFF00E5FF),
+          secondary: Color(0xFF00E676),
+        ),
+      ),
+      // กำหนด IP ของ Mosquitto Broker (ใช้ 127.0.0.1 หากรันบนคอมพิวเตอร์เครื่องเดียวกัน)
+      home: const TelemetryDashboardScreen(brokerIp: '127.0.0.1'),
+      debugShowCheckedModeBanner: false,
+    );
+  }
+}
+```
+
+#### 3. สั่งรัน Flutter App
+```powershell
+# รันบน Windows Desktop
+flutter run -d windows
+
+# หรือรันบน Android Device / Emulator
+flutter run -d <device-id>
+```
+
 ---
 
 ### กิจกรรมที่ 12-3.3: การทดสอบด้วยสคริปต์จำลองเซนเซอร์ (Python Telemetry Simulator)
@@ -400,6 +460,13 @@ while True:
 ```
 
 รันสคริปต์นี้และเปิดดูหน้าจอแดชบอร์ดบน Flutter: เข็มจะเคลื่อนไหวขึ้นลงอย่างนุ่มนวลตามคลื่น Sine พร้อมกับกราฟประวัติที่วาดเป็นระลอกคลื่นอย่างสวยงาม!
+
+> [!TIP]
+> **การทดสอบแบบรวดเร็วผ่าน PowerShell:**  
+> หากยังไม่ได้ติดตั้ง Python หรือไลบรารี `paho-mqtt` สามารถเปิดหน้าต่าง PowerShell แล้วทดสอบส่งค่าเข้า Broker ได้โดยตรง:
+> ```powershell
+> mosquitto_pub -h 127.0.0.1 -p 1883 -t "iot/esp32/telemetry" -m '{"voltage": 2.50, "raw": 3102, "uptime": 10}'
+> ```
 
 ---
 

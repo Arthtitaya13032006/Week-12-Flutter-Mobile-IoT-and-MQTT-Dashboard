@@ -33,13 +33,16 @@
 
 **คำสั่ง PowerShell:**
 ```powershell
-# คัดลอกโฟลเดอร์โปรเจกต์จาก Lab12-1 มาเป็น Lab12-2
+# 1. คัดลอกโฟลเดอร์โปรเจกต์จาก Lab12-1 มาเป็น Lab12-2
 Copy-Item -Recurse -Path "..\Lab12-1\iot_mqtt_basics" -Destination "..\Lab12-2\iot_actuator_switch"
 
-# ย้ายเข้าไปยังโฟลเดอร์โปรเจกต์ใหม่
+# 2. ย้ายเข้าไปยังโฟลเดอร์โปรเจกต์ใหม่
 cd ..\Lab12-2\iot_actuator_switch
+
+# 3. ล้างแคชการคอมไพล์เดิมออก (จำเป็นอย่างยิ่งเพื่อป้องกัน CMake Error จาก Path เก่า)
+flutter clean
 ```
-*(หรือคลิกขวา Copy โฟลเดอร์ `iot_mqtt_basics` ใน File Explorer แล้ว Paste วางในโฟลเดอร์ใหม่และเปลี่ยนชื่อโฟลเดอร์ตามต้องการ)*
+*(หรือคลิกขวา Copy โฟลเดอร์ `iot_mqtt_basics` ใน File Explorer แล้ว Paste วางในโฟลเดอร์ใหม่ และรันคำสั่ง `flutter clean` เสมอ)*
 
 #### 2. สร้างไฟล์หน้าจอควบคุมสวิตช์ (`lib/actuator_control_screen.dart`)
 ในโฟลเดอร์ `lib/` ให้สร้างไฟล์ใหม่ชื่อ `actuator_control_screen.dart` และใส่โค้ดต่อไปนี้

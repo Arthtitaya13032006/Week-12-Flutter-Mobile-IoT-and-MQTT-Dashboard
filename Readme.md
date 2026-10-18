@@ -52,7 +52,7 @@ flowchart TD
 |                        End-to-End Mobile IoT Architecture                         |
 +-----------------------------------------------------------------------------------+
 
-     [ สมาร์ตโฟน Android / iOS ]                             [ บอร์ด ESP32-C3 ]
+     [ สมาร์ตโฟน Android / iOS ]                             [ บอร์ด ESP32 ]
     +---------------------------+                      +---------------------------+
     |   Flutter Mobile App      |                      |    ESP-IDF Firmware       |
     |   - Radial Gauge (Volt)   |                      |   - Potentiometer (ADC0)  |

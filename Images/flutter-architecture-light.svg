@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 780" width="100%" id="diagram-root" style="background:#ffffff; border-radius:12px; font-family:'Sarabun', 'Prompt', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+  <defs>
+    <!-- Background Gradient for Header -->
+    <linearGradient id="bannerGradLight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f8fafc" />
+      <stop offset="100%" stop-color="#f1f5f9" />
+    </linearGradient>
+    
+    <!-- Soft Drop Shadow for Paper -->
+    <filter id="cardShadowLight" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#64748b" flood-opacity="0.12"/>
+    </filter>
+    
+    <!-- Arrowhead Marker -->
+    <marker id="arrowheadLight" markerWidth="9" markerHeight="9" refX="5" refY="4.5" orient="auto">
+      <polygon points="0 1.5, 7 4.5, 0 7.5" fill="#0284c7" />
+    </marker>
+  </defs>
+
+  <!-- ==================== TITLE BANNER ==================== -->
+  <g id="banner" filter="url(#cardShadowLight)">
+    <rect x="40" y="32" width="780" height="58" rx="10" fill="url(#bannerGradLight)" stroke="#0284c7" stroke-width="2"/>
+    <text x="430" y="68" fill="#0f172a" font-size="20" font-weight="700" text-anchor="middle" letter-spacing="0.5">โครงสร้างสถาปัตยกรรมของ Flutter</text>
+  </g>
+
+  <!-- ==================== LAYER 1: DART FRAMEWORK ==================== -->
+  <g id="card-layer-1">
+    <!-- Badge -->
+    <rect x="40" y="112" width="286.5" height="28" rx="6" fill="#0284c7"/>
+    <text x="54" y="131" fill="#ffffff" font-size="13" font-weight="700">เลเยอร์ 1: Dart Framework</text>
+    <text x="338.5" y="131" fill="#64748b" font-size="13" font-weight="500">ระดับที่นักพัฒนาเขียนโค้ด</text>
+    
+    <!-- Card Container -->
+    <rect x="40" y="148" width="780" height="142" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#cardShadowLight)"/>
+    
+    <!-- Bullet Items with Key-Value Highlight -->
+    <text x="62" y="174" font-size="14">
+      <tspan fill="#0369a1" font-weight="600">UI Elements:</tspan>
+      <tspan fill="#334155"> Material Design / Cupertino (iOS style)</tspan>
+    </text>
+    <text x="62" y="204" font-size="14">
+      <tspan fill="#0369a1" font-weight="600">Widgets:</tspan>
+      <tspan fill="#334155"> Container, Row, Column, StreamBuilder, AnimatedBuilder</tspan>
+    </text>
+    <text x="62" y="234" font-size="14">
+      <tspan fill="#0369a1" font-weight="600">Rendering &amp; Painting:</tspan>
+      <tspan fill="#334155"> RenderObject, Canvas, Layer Tree</tspan>
+    </text>
+    <text x="62" y="264" font-size="14">
+      <tspan fill="#0369a1" font-weight="600">Foundation &amp; Animation:</tspan>
+      <tspan fill="#334155"> Gestures, Physics, Scheduler, Services</tspan>
+    </text>
+  </g>
+
+  <!-- Flow Arrow 1 -> 2 -->
+  <g id="connector-1-to-2">
+    <line x1="430" y1="300" x2="430" y2="340" stroke="#0284c7" stroke-width="2.5" stroke-dasharray="4 3" marker-end="url(#arrowheadLight)"/>
+  </g>
+
+  <!-- ==================== LAYER 2: FLUTTER ENGINE (C++) ==================== -->
+  <g id="card-layer-2">
+    <!-- Badge -->
+    <rect x="40" y="354" width="349.5" height="28" rx="6" fill="#0284c7"/>
+    <text x="54" y="373" fill="#ffffff" font-size="13" font-weight="700">เลเยอร์ 2: Flutter Engine (C++)</text>
+    <text x="401.5" y="373" fill="#64748b" font-size="13" font-weight="500">เอนจินประมวลผลหลัก</text>
+    
+    <!-- Card Container -->
+    <rect x="40" y="390" width="780" height="142" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#cardShadowLight)"/>
+    
+    <!-- Bullet Items with Key-Value Highlight -->
+    <text x="62" y="416" font-size="14">
+      <tspan fill="#0369a1" font-weight="600">Graphics Pipeline:</tspan>
+      <tspan fill="#334155"> Impeller / Skia 2D Graphics Engine</tspan>
+    </text>
+    <text x="62" y="446" font-size="14">
+      <tspan fill="#0369a1" font-weight="600">Dart Runtime:</tspan>
+      <tspan fill="#334155"> Memory Allocator, Garbage Collector, Event Loop</tspan>
+    </text>
+    <text x="62" y="476" font-size="14">
+      <tspan fill="#0369a1" font-weight="600">Text Layout:</tspan>
+      <tspan fill="#334155"> LibTxt / HarfBuzz Font Shaping Engine</tspan>
+    </text>
+    <text x="62" y="506" font-size="14">
+      <tspan fill="#0369a1" font-weight="600">Platform Channels:</tspan>
+      <tspan fill="#334155"> การส่งข้อความไบนารีระหว่าง Dart กับ Native OS</tspan>
+    </text>
+  </g>
+
+  <!-- Flow Arrow 2 -> 3 -->
+  <g id="connector-2-to-3">
+    <line x1="430" y1="542" x2="430" y2="582" stroke="#0284c7" stroke-width="2.5" stroke-dasharray="4 3" marker-end="url(#arrowheadLight)"/>
+  </g>
+
+  <!-- ==================== LAYER 3: PLATFORM EMBEDDER ==================== -->
+  <g id="card-layer-3">
+    <!-- Badge -->
+    <rect x="40" y="596" width="318" height="28" rx="6" fill="#0284c7"/>
+    <text x="54" y="615" fill="#ffffff" font-size="13" font-weight="700">เลเยอร์ 3: Platform Embedder</text>
+    <text x="370" y="615" fill="#64748b" font-size="13" font-weight="500">ตัวเชื่อมต่อกับฮาร์ดแวร์ของแต่ละ OS</text>
+    
+    <!-- Multi-Column Card Container -->
+    <rect x="40" y="632" width="780" height="118" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#cardShadowLight)"/>
+    
+    <!-- Sub-Column 1: Android -->
+    <rect x="54" y="644" width="242.6" height="94" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="175.3" y="668" fill="#0284c7" font-size="13.5" font-weight="700" text-anchor="middle">Android (Java/C++)</text>
+    <line x1="64" y1="676" x2="286.6" y2="676" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="68" y="702" fill="#334155" font-size="12.5">• Surface Render</text>
+    <text x="68" y="726" fill="#334155" font-size="12.5">• Touch Events</text>
+    
+    <!-- Sub-Column 2: iOS -->
+    <rect x="308.6" y="644" width="242.6" height="94" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="430" y="668" fill="#0284c7" font-size="13.5" font-weight="700" text-anchor="middle">iOS (Objective-C/Swift)</text>
+    <line x1="318.6" y1="676" x2="541.3" y2="676" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="322.6" y="702" fill="#334155" font-size="12.5">• Metal / OpenGL Surface</text>
+    <text x="322.6" y="726" fill="#334155" font-size="12.5">• Lifecycle Management</text>
+    
+    <!-- Sub-Column 3: Desktop & Web -->
+    <rect x="563.3" y="644" width="242.6" height="94" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="684.6" y="668" fill="#0284c7" font-size="13.5" font-weight="700" text-anchor="middle">Windows/macOS/Linux/Web</text>
+    <line x1="573.3" y1="676" x2="796" y2="676" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="577.3" y="702" fill="#334155" font-size="12.5">• Message Dispatch</text>
+    <text x="577.3" y="726" fill="#334155" font-size="12.5">• Hardware Access</text>
+  </g>
+</svg>

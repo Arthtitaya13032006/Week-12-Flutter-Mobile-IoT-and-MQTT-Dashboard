@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 690" width="100%" id="diagram-root" style="background:#ffffff; border-radius:10px; font-family:'Sarabun', 'TH Sarabun New', 'Prompt', system-ui, -apple-system, sans-serif;">
+  <defs>
+    <filter id="shadowFilter" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#000000" flood-opacity="0.1"/>
+    </filter>
+    <marker id="arrowhead" markerWidth="9" markerHeight="9" refX="5" refY="4.5" orient="auto">
+      <polygon points="0 1.5, 7 4.5, 0 7.5" fill="#0284c7" />
+    </marker>
+  </defs>
+  <!-- Banner -->
+  <g id="banner" filter="url(#shadowFilter)">
+    <rect x="40" y="32" width="780" height="58" rx="10" fill="#f0f9ff" stroke="#0284c7" stroke-width="2"/>
+    <text x="430" y="68" fill="#0369a1" font-size="20" font-weight="700" text-anchor="middle" letter-spacing="0.5">หลักการออกแบบแดชบอร์ด IoT ยุคใหม่</text>
+  </g>
+  <!-- Card Group: 1. Dark Theme &amp; OLED Contrast -->
+  <g id="card-group-1">
+    <!-- Badge -->
+    <rect x="40" y="112" width="328.5" height="28" rx="6" fill="#0284c7"/>
+    <text x="54" y="131" fill="#ffffff" font-size="13" font-weight="700">1. Dark Theme &amp; OLED Contrast</text>
+    <!-- Card Container -->
+    <rect x="40" y="148" width="780" height="52" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadowFilter)"/>
+    <text x="62" y="174" fill="#334155" font-size="14">ใช้พื้นหลังสีเทาดำมืด (เช่น #0F172A) ช่วยขับเน้นแสงสีของข้อมูลเซนเซอร์ และประหยัดแบตเตอรี่บนจอมือถือ</text>
+  </g>
+  <!-- Flow Connector -->
+  <g id="connector-2">
+    <line x1="430" y1="214" x2="430" y2="244" stroke="#0284c7" stroke-width="2.3" stroke-dasharray="4 3" marker-end="url(#arrowhead)"/>
+  </g>
+  <!-- Card Group: 2. Glassmorphism &amp; Depth -->
+  <g id="card-group-3">
+    <!-- Badge -->
+    <rect x="40" y="264" width="276" height="28" rx="6" fill="#0284c7"/>
+    <text x="54" y="283" fill="#ffffff" font-size="13" font-weight="700">2. Glassmorphism &amp; Depth</text>
+    <!-- Card Container -->
+    <rect x="40" y="300" width="780" height="52" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadowFilter)"/>
+    <text x="62" y="326" fill="#334155" font-size="14">บัตรการ์ดแบบกระจกฝ้าโปร่งแสง (Backdrop Blur) พร้อมเส้นขอบบางเฉียบ (Subtle Glow Borders)</text>
+  </g>
+  <!-- Flow Connector -->
+  <g id="connector-4">
+    <line x1="430" y1="366" x2="430" y2="396" stroke="#0284c7" stroke-width="2.3" stroke-dasharray="4 3" marker-end="url(#arrowhead)"/>
+  </g>
+  <!-- Card Group: 3. Micro-Animations &amp; Fluidity -->
+  <g id="card-group-5">
+    <!-- Badge -->
+    <rect x="40" y="416" width="339" height="28" rx="6" fill="#0284c7"/>
+    <text x="54" y="435" fill="#ffffff" font-size="13" font-weight="700">3. Micro-Animations &amp; Fluidity</text>
+    <!-- Card Container -->
+    <rect x="40" y="452" width="780" height="52" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadowFilter)"/>
+    <text x="62" y="478" fill="#334155" font-size="14">เข็มมาตรวัดและตัวเลขที่ขยับอย่างนุ่มนวลด้วยการ Interpolation (Lerp) แทนที่จะกระตุกเปลี่ยนฉับพลัน</text>
+  </g>
+  <!-- Flow Connector -->
+  <g id="connector-6">
+    <line x1="430" y1="518" x2="430" y2="548" stroke="#0284c7" stroke-width="2.3" stroke-dasharray="4 3" marker-end="url(#arrowhead)"/>
+  </g>
+  <!-- Card Group: 4. Haptic Feedback &amp; Tactile Feel -->
+  <g id="card-group-7">
+    <!-- Badge -->
+    <rect x="40" y="568" width="370.5" height="28" rx="6" fill="#0284c7"/>
+    <text x="54" y="587" fill="#ffffff" font-size="13" font-weight="700">4. Haptic Feedback &amp; Tactile Feel</text>
+    <!-- Card Container -->
+    <rect x="40" y="604" width="780" height="52" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadowFilter)"/>
+    <text x="62" y="630" fill="#334155" font-size="14">สั่นเบาๆ ที่นิ้วมือเมื่อแตะสวิตช์ เพื่อยืนยันการสั่งการ</text>
+  </g>
+</svg>

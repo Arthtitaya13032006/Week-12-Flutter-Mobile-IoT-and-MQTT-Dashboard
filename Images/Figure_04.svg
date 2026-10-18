@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 500" width="100%" id="diagram-root" style="background:#ffffff; border-radius:10px; font-family:'Sarabun', 'TH Sarabun New', 'Prompt', system-ui, -apple-system, sans-serif;">
+  <defs>
+    <filter id="shadowFilter" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000000" flood-opacity="0.1"/>
+    </filter>
+    <marker id="arrowhead" markerWidth="9" markerHeight="9" refX="5" refY="4.5" orient="auto">
+      <polygon points="0 1.5, 7 4.5, 0 7.5" fill="#0284c7" />
+    </marker>
+  </defs>
+  <!-- Step 1 -> 2 -->
+  <line x1="210" y1="82" x2="210" y2="111" stroke="#0284c7" stroke-width="1.8" marker-end="url(#arrowhead)"/>
+  <!-- Step 2 -> 3 -->
+  <line x1="210" y1="168" x2="210" y2="211" stroke="#0284c7" stroke-width="1.8" marker-end="url(#arrowhead)"/>
+  <!-- Step 3 -> 4 (Down to setState) -->
+  <line x1="234" y1="268" x2="234" y2="297" stroke="#0284c7" stroke-width="1.8" marker-end="url(#arrowhead)"/>
+  <!-- Step 4 -> 5 -->
+  <line x1="210" y1="354" x2="210" y2="383" stroke="#0284c7" stroke-width="1.8" marker-end="url(#arrowhead)"/>
+  <rect x="78" y="361" width="264" height="22" rx="4" fill="#f0f9ff" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="210" y="376" fill="#64748b" font-size="11" font-weight="600" text-anchor="middle">เมื่อปิดหน้าจอ หรือเปลี่ยนหน้า</text>
+  <!-- Reactive Loop: setState() back to build() -->
+  <path d="M 110 329 L 75 329 L 75 243 L 103 243" fill="none" stroke="#0284c7" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#arrowhead)"/>
+  <rect x="53" y="274" width="44" height="24" rx="4" fill="#0284c7"/>
+  <text x="75" y="290.5" fill="#ffffff" font-size="11" font-weight="700" text-anchor="middle">Loop</text>
+  <!-- Stage Card 1: 1. createState() -->
+  <g id="stage-1" filter="url(#shadowFilter)">
+    <rect x="110" y="32" width="200" height="50" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.7"/>
+    <text x="210" y="62" fill="#0369a1" font-size="14.5" font-weight="700" text-anchor="middle">1. createState()</text>
+  </g>
+  <!-- UML Note Link (Dashed Line) -->
+  <line x1="310" y1="57" x2="360" y2="57" stroke="#cbd5e1" stroke-width="1.3" stroke-dasharray="4 3"/>
+  <!-- Comment/Annotation Box 1 -->
+  <g id="note-1">
+    <!-- Background Callout with Left Accent Border -->
+    <rect x="360" y="32" width="480" height="50" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+    <rect x="360" y="32" width="4" height="50" rx="2" fill="#0284c7"/>
+    <text x="378" y="56" fill="#334155" font-size="13" font-weight="500">สร้างออบเจกต์ State คู่กับ Widget</text>
+  </g>
+  <!-- Stage Card 2: 2. initState() -->
+  <g id="stage-2" filter="url(#shadowFilter)">
+    <rect x="110" y="118" width="200" height="50" rx="10" fill="#f0f9ff" stroke="#cbd5e1" stroke-width="1.7"/>
+    <text x="210" y="148" fill="#0369a1" font-size="14.5" font-weight="700" text-anchor="middle">2. initState()</text>
+  </g>
+  <!-- UML Note Link (Dashed Line) -->
+  <line x1="310" y1="143" x2="360" y2="143" stroke="#cbd5e1" stroke-width="1.3" stroke-dasharray="4 3"/>
+  <!-- Comment/Annotation Box 2 -->
+  <g id="note-2">
+    <!-- Background Callout with Left Accent Border -->
+    <rect x="360" y="111" width="480" height="64" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+    <rect x="360" y="111" width="4" height="64" rx="2" fill="#0284c7"/>
+    <text x="378" y="135" fill="#334155" font-size="13" font-weight="500">ทำงานครั้งแรกครั้งเดียวเมื่อวิดเจ็ตถูกโหลดขึ้นจอ</text>
+    <text x="378" y="155" fill="#0369a1" font-size="13" font-weight="600">*จุดที่เหมาะสมที่สุดสำหรับการเริ่มต้นเชื่อมต่อ MQTT*</text>
+  </g>
+  <!-- Stage Card 3: 3. build() -->
+  <g id="stage-3" filter="url(#shadowFilter)">
+    <rect x="110" y="218" width="200" height="50" rx="10" fill="#f0f9ff" stroke="#cbd5e1" stroke-width="1.7"/>
+    <text x="210" y="248" fill="#0369a1" font-size="14.5" font-weight="700" text-anchor="middle">3. build()</text>
+  </g>
+  <!-- UML Note Link (Dashed Line) -->
+  <line x1="310" y1="243" x2="360" y2="243" stroke="#cbd5e1" stroke-width="1.3" stroke-dasharray="4 3"/>
+  <!-- Comment/Annotation Box 3 -->
+  <g id="note-3">
+    <!-- Background Callout with Left Accent Border -->
+    <rect x="360" y="218" width="480" height="50" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+    <rect x="360" y="218" width="4" height="50" rx="2" fill="#0284c7"/>
+    <text x="378" y="242" fill="#334155" font-size="13" font-weight="500">ประมวลผลและสร้างชิ้นส่วน UI ออกมาแสดงผล</text>
+  </g>
+  <!-- Stage Card 4: setState() -->
+  <g id="stage-4" filter="url(#shadowFilter)">
+    <rect x="110" y="304" width="200" height="50" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.7"/>
+    <text x="210" y="334" fill="#0369a1" font-size="14.5" font-weight="700" text-anchor="middle">setState()</text>
+  </g>
+  <!-- UML Note Link (Dashed Line) -->
+  <line x1="310" y1="329" x2="360" y2="329" stroke="#cbd5e1" stroke-width="1.3" stroke-dasharray="4 3"/>
+  <!-- Comment/Annotation Box 4 -->
+  <g id="note-4">
+    <!-- Background Callout with Left Accent Border -->
+    <rect x="360" y="304" width="480" height="50" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+    <rect x="360" y="304" width="4" height="50" rx="2" fill="#0284c7"/>
+    <text x="378" y="328" fill="#334155" font-size="13" font-weight="500">เรียกเมื่อมีข้อมูลใหม่เข้ามาเพื่อกระตุ้นให้รัน build() ใหม่</text>
+  </g>
+  <!-- Stage Card 5: 4. dispose() -->
+  <g id="stage-5" filter="url(#shadowFilter)">
+    <rect x="110" y="390" width="200" height="50" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.7"/>
+    <text x="210" y="420" fill="#0369a1" font-size="14.5" font-weight="700" text-anchor="middle">4. dispose()</text>
+  </g>
+  <!-- UML Note Link (Dashed Line) -->
+  <line x1="310" y1="415" x2="360" y2="415" stroke="#cbd5e1" stroke-width="1.3" stroke-dasharray="4 3"/>
+  <!-- Comment/Annotation Box 5 -->
+  <g id="note-5">
+    <!-- Background Callout with Left Accent Border -->
+    <rect x="360" y="383" width="480" height="64" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+    <rect x="360" y="383" width="4" height="64" rx="2" fill="#0284c7"/>
+    <text x="378" y="407" fill="#334155" font-size="13" font-weight="500">ทำงานเมื่อวิดเจ็ตถูกทำลายออกจากหน่วยความจำ</text>
+    <text x="378" y="427" fill="#0369a1" font-size="13" font-weight="600">*จุดบังคับสำหรับการตัดการเชื่อมต่อ MQTT และคืนหน่วยความจำ*</text>
+  </g>
+</svg>

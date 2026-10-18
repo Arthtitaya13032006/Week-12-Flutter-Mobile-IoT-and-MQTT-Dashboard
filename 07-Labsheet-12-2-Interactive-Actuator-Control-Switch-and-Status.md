@@ -245,7 +245,7 @@ class _ActuatorControlScreenState extends State<ActuatorControlScreen> {
                   ),
                   const SizedBox(height: 20),
                   const Text(
-                    'หลอดไฟ LED ทดสอบ (GPIO 8)',
+                    'หลอดไฟ LED ทดสอบ (GPIO 2)',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
                   ),
                   const SizedBox(height: 6),

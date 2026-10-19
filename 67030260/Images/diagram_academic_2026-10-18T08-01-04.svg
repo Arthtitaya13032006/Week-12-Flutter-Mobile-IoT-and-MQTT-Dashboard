@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 330" width="100%" id="diagram-root" style="background:#ffffff; border-radius:10px; font-family:'Sarabun', 'TH Sarabun New', 'Prompt', system-ui, -apple-system, sans-serif;">
+  <defs>
+    <filter id="shadowFilter" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000000" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrowhead" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+      <polygon points="0 1, 6 4, 0 7" fill="#0284c7" />
+    </marker>
+  </defs>
+  <!-- Root Card -->
+  <g id="root-card" filter="url(#shadowFilter)">
+    <rect x="270" y="24" width="320" height="64" rx="10" fill="#f8fafc" stroke="#0284c7" stroke-width="2"/>
+    <text x="430" y="52" fill="#0284c7" font-size="16" font-weight="700" text-anchor="middle">Smartphone ของ user</text>
+    <text x="430" y="72" fill="#64748b" font-size="13" font-weight="500" text-anchor="middle">Human-Machine Center</text>
+  </g>
+  <!-- Branching Lines -->
+  <line x1="430" y1="88" x2="430" y2="116" stroke="#0284c7" stroke-width="2"/>
+  <line x1="161.33333333333331" y1="116" x2="698.6666666666666" y2="116" stroke="#0284c7" stroke-width="2"/>
+  <line x1="161.33333333333331" y1="116" x2="161.33333333333331" y2="138" stroke="#0284c7" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <!-- Child Column 1 -->
+  <g id="child-1" filter="url(#shadowFilter)">
+    <!-- Header Box -->
+    <rect x="35" y="144" width="252.66666666666666" height="42" rx="8" fill="#0284c7" stroke="#e2e8f0" stroke-width="1.5"/>
+    <text x="161.33333333333331" y="170" fill="#ffffff" font-size="14.5" font-weight="700" text-anchor="middle">Onboarding &amp; Setup</text>
+    
+    <!-- Body Card -->
+    <rect x="35" y="192" width="252.66666666666666" height="108" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+    <text x="51" y="218" fill="#334155" font-size="13" font-weight="500">• BLE Wi-Fi Provisioning</text>
+    <text x="51" y="246" fill="#334155" font-size="13" font-weight="500">• Device Claiming (Cloud)</text>
+    <text x="51" y="274" fill="#334155" font-size="13" font-weight="500">• QR Code Scanning</text>
+  </g>
+  <line x1="429.99999999999994" y1="116" x2="429.99999999999994" y2="138" stroke="#0284c7" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <!-- Child Column 2 -->
+  <g id="child-2" filter="url(#shadowFilter)">
+    <!-- Header Box -->
+    <rect x="303.66666666666663" y="144" width="252.66666666666666" height="42" rx="8" fill="#0284c7" stroke="#e2e8f0" stroke-width="1.5"/>
+    <text x="429.99999999999994" y="170" fill="#ffffff" font-size="14.5" font-weight="700" text-anchor="middle">Monitoring &amp; Control</text>
+    
+    <!-- Body Card -->
+    <rect x="303.66666666666663" y="192" width="252.66666666666666" height="108" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+    <text x="319.66666666666663" y="218" fill="#334155" font-size="13" font-weight="500">• Real-time Gauge/Charts</text>
+    <text x="319.66666666666663" y="246" fill="#334155" font-size="13" font-weight="500">• Remote Actuator Control</text>
+    <text x="319.66666666666663" y="274" fill="#334155" font-size="13" font-weight="500">• Instant State Feedback</text>
+  </g>
+  <line x1="698.6666666666666" y1="116" x2="698.6666666666666" y2="138" stroke="#0284c7" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <!-- Child Column 3 -->
+  <g id="child-3" filter="url(#shadowFilter)">
+    <!-- Header Box -->
+    <rect x="572.3333333333333" y="144" width="252.66666666666666" height="42" rx="8" fill="#0284c7" stroke="#e2e8f0" stroke-width="1.5"/>
+    <text x="698.6666666666666" y="170" fill="#ffffff" font-size="14.5" font-weight="700" text-anchor="middle">Alerting &amp; Intelligence</text>
+    
+    <!-- Body Card -->
+    <rect x="572.3333333333333" y="192" width="252.66666666666666" height="108" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+    <text x="588.3333333333333" y="218" fill="#334155" font-size="13" font-weight="500">• Local Push Notifications</text>
+    <text x="588.3333333333333" y="246" fill="#334155" font-size="13" font-weight="500">• Geofencing / Automation</text>
+    <text x="588.3333333333333" y="274" fill="#334155" font-size="13" font-weight="500">• Telemetry Historical Logs</text>
+  </g>
+</svg>

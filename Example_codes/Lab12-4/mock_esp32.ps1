@@ -22,7 +22,8 @@ function Test-BrokerConnection {
         }
         $tcpClient.Close()
         return $false
-    } catch {
+    }
+    catch {
         return $false
     }
 }
@@ -50,7 +51,7 @@ $job = Start-Job -ScriptBlock {
     while ($true) {
         $v = [Math]::Round(1.65 + 1.5 * [Math]::Sin($t * 0.2), 2)
         $raw = [int](($v / 3.3) * 4095)
-        $payload = "{`"voltage`": $v, `"raw`": $raw, `"uptime`": $t}"
+        $payload = "{\`"voltage\`": $v, \`"raw\`": $raw, \`"uptime\`": $t}"
         mosquitto_pub -h $b -p $p -t "iot/esp32/telemetry" -m $payload
         $t++
         Start-Sleep -Milliseconds 500
@@ -72,11 +73,12 @@ try {
         if ($cmd -match '"ON"' -or $cmd -match 'ON') {
             $ledState = $true
             Write-Host "  -> เปิดไฟ LED (GPIO 2 = HIGH) และส่ง ACK ยืนยันสำเร็จ" -ForegroundColor Green
-        } else {
+        }
+        else {
             Write-Host "  -> ปิดไฟ LED (GPIO 2 = LOW) และส่ง ACK ยืนยันสำเร็จ" -ForegroundColor Red
         }
 
-        $ackJson = "{`"led_state`": $(if($ledState){'true'}else{'false'}), `"ack`": true}"
+        $ackJson = "{\`"led_state\`": $(if($ledState){'true'}else{'false'}), \`"ack\`": true}"
         mosquitto_pub -h $Broker -p $Port -t "iot/esp32/led_ack" -m $ackJson
     }
 }

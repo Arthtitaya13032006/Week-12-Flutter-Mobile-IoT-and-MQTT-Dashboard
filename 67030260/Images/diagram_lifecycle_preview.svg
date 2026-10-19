@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 527" width="100%" id="diagram-root" style="background:#ffffff; border-radius:8px; font-family:'Sarabun', 'Prompt', sans-serif;">
+  <defs>
+    <filter id="shadowFilter" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000000" flood-opacity="0.08"/>
+    </filter>
+    <marker id="arrowhead" markerWidth="9" markerHeight="9" refX="5" refY="4.5" orient="auto">
+      <polygon points="0 1.5, 7 4.5, 0 7.5" fill="#0284c7" />
+    </marker>
+  </defs>
+  <!-- Step 1 -> 2 -->
+  <line x1="210" y1="85" x2="210" y2="116" stroke="#0284c7" stroke-width="1.8" marker-end="url(#arrowhead)"/>
+  <!-- Step 2 -> 3 -->
+  <line x1="210" y1="173" x2="210" y2="218" stroke="#0284c7" stroke-width="1.8" marker-end="url(#arrowhead)"/>
+  <!-- Step 3 -> 4 (Down to setState) -->
+  <line x1="234" y1="275" x2="234" y2="306" stroke="#0284c7" stroke-width="1.8" marker-end="url(#arrowhead)"/>
+  <!-- Step 4 -> 5 -->
+  <line x1="210" y1="363" x2="210" y2="408" stroke="#0284c7" stroke-width="1.8" marker-end="url(#arrowhead)"/>
+  <rect x="81" y="378" width="258" height="22" rx="4" fill="#f0f9ff" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="210" y="393" fill="#64748b" font-size="11" font-weight="600" text-anchor="middle">เมื่อปิดหน้าจอ หรือเปลี่ยนหน้า</text>
+  <!-- Reactive Loop: setState() back to build() -->
+  <path d="M 110 338 L 75 338 L 75 250 L 103 250" fill="none" stroke="#0284c7" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#arrowhead)"/>
+  <rect x="53" y="282" width="44" height="24" rx="4" fill="#0284c7"/>
+  <text x="75" y="298.5" fill="#ffffff" font-size="11" font-weight="700" text-anchor="middle">Loop</text>
+  <!-- Stage Card 1: 1. createState() -->
+  <g id="stage-1" filter="url(#shadowFilter)">
+    <rect x="110" y="35" width="200" height="50" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.7"/>
+    <text x="210" y="65" fill="#0369a1" font-size="14.5" font-weight="700" text-anchor="middle">1. createState()</text>
+  </g>
+  <line x1="310" y1="60" x2="352" y2="60" stroke="#0284c7" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <!-- Note Card 1 -->
+  <g id="note-1" filter="url(#shadowFilter)">
+    <rect x="360" y="35" width="460" height="50" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+    <text x="378" y="57" fill="#334155" font-size="13" font-weight="500">สร้างออบเจกต์ State คู่กับ Widget</text>
+  </g>
+  <!-- Stage Card 2: 2. initState() -->
+  <g id="stage-2" filter="url(#shadowFilter)">
+    <rect x="110" y="123" width="200" height="50" rx="8" fill="#f0f9ff" stroke="#cbd5e1" stroke-width="1.7"/>
+    <text x="210" y="153" fill="#0369a1" font-size="14.5" font-weight="700" text-anchor="middle">2. initState()</text>
+  </g>
+  <line x1="310" y1="148" x2="352" y2="148" stroke="#0284c7" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <!-- Note Card 2 -->
+  <g id="note-2" filter="url(#shadowFilter)">
+    <rect x="360" y="117" width="460" height="62" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+    <text x="378" y="139" fill="#334155" font-size="13" font-weight="500">ทำงานครั้งแรกครั้งเดียวเมื่อวิดเจ็ตถูกโหลดขึ้นจอ</text>
+    <text x="378" y="159" fill="#0369a1" font-size="13" font-weight="600">จุดที่เหมาะสมที่สุดสำหรับการเริ่มต้นเชื่อมต่อ MQTT</text>
+  </g>
+  <!-- Stage Card 3: 3. build() -->
+  <g id="stage-3" filter="url(#shadowFilter)">
+    <rect x="110" y="225" width="200" height="50" rx="8" fill="#f0f9ff" stroke="#cbd5e1" stroke-width="1.7"/>
+    <text x="210" y="255" fill="#0369a1" font-size="14.5" font-weight="700" text-anchor="middle">3. build()</text>
+  </g>
+  <line x1="310" y1="250" x2="352" y2="250" stroke="#0284c7" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <!-- Note Card 3 -->
+  <g id="note-3" filter="url(#shadowFilter)">
+    <rect x="360" y="225" width="460" height="50" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+    <text x="378" y="247" fill="#334155" font-size="13" font-weight="500">ประมวลผลและสร้างชิ้นส่วน UI ออกมาแสดงผล</text>
+  </g>
+  <!-- Stage Card 4: setState() -->
+  <g id="stage-4" filter="url(#shadowFilter)">
+    <rect x="110" y="313" width="200" height="50" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.7"/>
+    <text x="210" y="343" fill="#0369a1" font-size="14.5" font-weight="700" text-anchor="middle">setState()</text>
+  </g>
+  <line x1="310" y1="338" x2="352" y2="338" stroke="#0284c7" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <!-- Note Card 4 -->
+  <g id="note-4" filter="url(#shadowFilter)">
+    <rect x="360" y="307" width="460" height="62" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+    <text x="378" y="329" fill="#334155" font-size="13" font-weight="500">เรียกเมื่อมีข้อมูลใหม่เข้ามาเพื่อกระตุ้นให้รัน</text>
+    <text x="378" y="349" fill="#334155" font-size="13" font-weight="500">build() ใหม่</text>
+  </g>
+  <!-- Stage Card 5: 4. dispose() -->
+  <g id="stage-5" filter="url(#shadowFilter)">
+    <rect x="110" y="415" width="200" height="50" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.7"/>
+    <text x="210" y="445" fill="#0369a1" font-size="14.5" font-weight="700" text-anchor="middle">4. dispose()</text>
+  </g>
+  <line x1="310" y1="440" x2="352" y2="440" stroke="#0284c7" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <!-- Note Card 5 -->
+  <g id="note-5" filter="url(#shadowFilter)">
+    <rect x="360" y="409" width="460" height="62" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+    <text x="378" y="431" fill="#0369a1" font-size="13" font-weight="600">ทำงานเมื่อวิดเจ็ตถูกทำลายออกจากหน่วยความจำ จุดบังคับสำหรับการตัดการเชื่อมต่อ</text>
+    <text x="378" y="451" fill="#334155" font-size="13" font-weight="500">MQTT และคืนหน่วยความจำ</text>
+  </g>
+</svg>

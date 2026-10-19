@@ -1,35 +1,88 @@
-# General
+# ==========================================
+# Git Ignore for IoT Flutter & ESP-IDF Workspace
+# ==========================================
+
+# --- Operating System Files ---
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+*~
+*.tmp
 *.bkp
 ~$**
+
+# --- IDE & Editor Files ---
+.idea/
+**/.idea/
+*.iml
+**/*.iml
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
-.idea/
-*.tmp
+
+# --- Python ---
 __pycache__/
 *.py[cod]
+*$py.class
+*.log
+venv/
+.venv/
+env/
 
-# ESP-IDF
+# --- ESP-IDF & C/C++ ---
 build/
 **/build/
 build_*_*/
 dependencies.lock
 managed_components/
 **/managed_components/
-*.old
 sdkconfig.old
+*.old
+*.bin
+*.elf
+*.map
 
-# Flutter & Dart
+# --- Flutter & Dart Build & Cache ---
 .dart_tool/
 **/.dart_tool/
 .packages
 **/.packages
+.pub-cache/
+**/.pub-cache/
+.pub/
+**/.pub/
 .flutter-plugins
 **/.flutter-plugins
 .flutter-plugins-dependencies
 **/.flutter-plugins-dependencies
+build/
+**/build/
+
+# --- Ignore Heavy Platform Boilerplate in Root Flutter Projects ---
+# (Keep only source code: lib/, test/, pubspec.yaml, pubspec.lock)
+iot_*/android/
+iot_*/ios/
+iot_*/windows/
+iot_*/linux/
+iot_*/macos/
+iot_*/web/
+
+# Platform Ephemeral & Generated Outputs
 **/ephemeral/
 **/windows/flutter/ephemeral/
 **/linux/flutter/ephemeral/
 **/macos/Flutter/ephemeral/
+**/ios/Flutter/ephemeral/
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/flutter_export_environment.sh
+**/ios/Runner/GeneratedPluginRegistrant.*
+**/macos/Flutter/GeneratedPluginRegistrant.*

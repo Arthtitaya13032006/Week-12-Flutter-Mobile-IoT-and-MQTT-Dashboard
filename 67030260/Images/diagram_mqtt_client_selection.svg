@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 440" width="100%" id="diagram-root" style="background:#ffffff; border-radius:10px; font-family:'Sarabun', 'TH Sarabun New', 'Prompt', system-ui, sans-serif;">
+  <defs>
+    <filter id="shadowFilter" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#000000" flood-opacity="0.08"/>
+    </filter>
+    <marker id="arrowhead" markerWidth="9" markerHeight="9" refX="5" refY="4.5" orient="auto">
+      <polygon points="0 1.5, 7 4.5, 0 7.5" fill="#0284c7" />
+    </marker>
+  </defs>
+  <!-- Title Banner -->
+  <g id="banner" filter="url(#shadowFilter)">
+    <rect x="60" y="24" width="740" height="52" rx="8" fill="#f0f9ff" stroke="#0284c7" stroke-width="2"/>
+    <text x="430" y="57" fill="#0369a1" font-size="18" font-weight="700" text-anchor="middle" letter-spacing="0.5">การเลือกประเภท Client ในแพ็กเกจ mqtt_client</text>
+  </g>
+  <!-- Platform 1: Mobile & Desktop -->
+  <g id="platform-mobile" filter="url(#shadowFilter)">
+    <rect x="60" y="104" width="340" height="46" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+    <text x="230" y="133" fill="#0369a1" font-size="14.5" font-weight="700" text-anchor="middle">Android / iOS / Desktop</text>
+  </g>
+  <!-- Platform 2: Web -->
+  <g id="platform-web" filter="url(#shadowFilter)">
+    <rect x="460" y="104" width="340" height="46" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+    <text x="630" y="133" fill="#0369a1" font-size="14.5" font-weight="700" text-anchor="middle">Flutter Web Browser</text>
+  </g>
+  <line x1="230" y1="150" x2="230" y2="170" stroke="#0284c7" stroke-width="1.8" marker-end="url(#arrowhead)"/>
+  <line x1="630" y1="150" x2="630" y2="170" stroke="#0284c7" stroke-width="1.8" marker-end="url(#arrowhead)"/>
+  <!-- Client Class 1: MqttServerClient -->
+  <g id="client-server" filter="url(#shadowFilter)">
+    <rect x="60" y="176" width="340" height="76" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+    <text x="230" y="206" fill="#0369a1" font-size="16" font-weight="700" text-anchor="middle">MqttServerClient</text>
+    <text x="230" y="230" fill="#64748b" font-size="12.5" font-weight="500" text-anchor="middle">รันผ่าน Raw TCP Socket (พอร์ต 1883 / 8883)</text>
+  </g>
+  <!-- Client Class 2: MqttBrowserClient -->
+  <g id="client-browser" filter="url(#shadowFilter)">
+    <rect x="460" y="176" width="340" height="76" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+    <text x="630" y="206" fill="#0369a1" font-size="16" font-weight="700" text-anchor="middle">MqttBrowserClient</text>
+    <text x="630" y="230" fill="#64748b" font-size="12.5" font-weight="500" text-anchor="middle">รันผ่าน WebSockets ws:// หรือ wss:// (พอร์ต 8083)</text>
+  </g>
+  <line x1="230" y1="252" x2="230" y2="280" stroke="#0284c7" stroke-width="1.8"/>
+  <line x1="630" y1="252" x2="630" y2="280" stroke="#0284c7" stroke-width="1.8"/>
+  <line x1="230" y1="280" x2="630" y2="280" stroke="#0284c7" stroke-width="1.8"/>
+  <line x1="430" y1="280" x2="430" y2="332" stroke="#0284c7" stroke-width="1.8" marker-end="url(#arrowhead)"/>
+  <rect x="310" y="269" width="240" height="22" rx="4" fill="#f0f9ff" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="430" y="284.5" fill="#0369a1" font-size="11.5" font-weight="600" text-anchor="middle">เชื่อมต่อเข้า Broker ตามพอร์ตของแต่ละโปรโตคอล</text>
+  <!-- MQTT Broker Target -->
+  <g id="broker" filter="url(#shadowFilter)">
+    <rect x="240" y="340" width="380" height="64" rx="8" fill="#f0f9ff" stroke="#0284c7" stroke-width="2"/>
+    <text x="430" y="370" fill="#0369a1" font-size="16" font-weight="700" text-anchor="middle">Mosquitto / EMQX MQTT Broker</text>
+    <text x="430" y="390" fill="#64748b" font-size="12" font-weight="500" text-anchor="middle">ศูนย์กลางกระจายข้อความ Publish / Subscribe</text>
+  </g>
+</svg>
